@@ -107,7 +107,7 @@ router.get('/parse/save-complaint',
         postToParse(req, res, true);
     });
 
-router.post('/parse/save-order', function (req, res, next) {
+router.post('/parse/save-complaint', function (req, res, next) {
     postToParse(req, res, false);
 });
 
