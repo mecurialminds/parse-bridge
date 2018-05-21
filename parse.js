@@ -5,7 +5,7 @@ var url = require('url');
 var querystring = require('querystring');
 
 const PARSE_HTTP_OPTIONS = {
-    hostname: 'mm-dashboard.herokuapp.com',
+    hostname: 'mmparse-server.herokuapp.com',
     // hostname: 'localhost',
     port: 80,
     path: '/parse/classes/Complaint',
