@@ -16,14 +16,13 @@ const PARSE_HTTP_OPTIONS = {
         'X-Parse-Application-Id': 'myAppId'
     }
 };
-
-function validateComplaintParams(cellNumber, dealershipNameLocation, bookingNumber, userComplain, userComplainNumber, userErrorResponse) {
+function validateComplaintParams(cellNumber, dealershipNameLocation, bookingNumber, userComplain, userComplainNumber, userName) {
     return {
         cellNumber: cellNumber ? cellNumber : 'N/A',
         dealershipNameLocation: dealershipNameLocation ? dealershipNameLocation : 'N/A',
         bookingNumber: bookingNumber ? bookingNumber : 'N/A',
         userComplain: userComplain ? userComplain : 'N/A',
-        userErrorResponse: userErrorResponse ? userErrorResponse : 'N/A',
+        userName: userName ? userName : 'N/A',
         userComplainNumber: userComplainNumber ? userComplainNumber : 'N/A'
     }
 }
@@ -33,10 +32,10 @@ function postRequestParams(body) {
     var dealershipNameLocation = body.dealershipNameLocation;
     var bookingNumber = body.bookingNumber;
     var userComplain = body.userComplain;
-    var userErrorResponse = body.userErrorResponse;
+    var userName = body.userName;
     var userComplainNumber = body.userComplainNumber;
 
-    return validateComplaintParams(cellNumber, dealershipNameLocation, bookingNumber, userComplain, userComplainNumber, userErrorResponse);
+    return validateComplaintParams(cellNumber, dealershipNameLocation, bookingNumber, userComplain, userComplainNumber, userName);
 }
 
 function getRequestParams(params) {
@@ -45,10 +44,10 @@ function getRequestParams(params) {
     var dealershipNameLocation = params.dealershipNameLocation;
     var bookingNumber = params.bookingNumber;
     var userComplain = params.userComplain;
-    var userErrorResponse = params.userErrorResponse;
+    var userName = params.userName;
     var userComplainNumber = params.userComplainNumber;
 
-    return validateComplaintParams(cellNumber, dealershipNameLocation, bookingNumber, userComplain, userComplainNumber, userErrorResponse);
+    return validateComplaintParams(cellNumber, dealershipNameLocation, bookingNumber, userComplain, userComplainNumber, userName);
 }
 
 function postParseComplaints(params, res, isGet) {
