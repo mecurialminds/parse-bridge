@@ -8,7 +8,7 @@ const PARSE_HTTP_OPTIONS = {
     hostname: 'mmparse-server.herokuapp.com',
     // hostname: 'localhost',
     port: 80,
-    //path: '/parse/classes/Complaint',
+    path: '/parse/classes/Complaint',
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
@@ -113,6 +113,7 @@ router.get('/parse/cities',
         if (isGet) {
 		var objectId;
 		PARSE_HTTP_OPTIONS.method = "GET";
+		PARSE_HTTP_OPTIONS.path: '/parse/classes/Cities',
 		var temp = url.parse(req.url, true).query;
 		params = {objectId : temp.id};
     	}
