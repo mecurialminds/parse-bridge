@@ -5,10 +5,10 @@ var url = require('url');
 var querystring = require('querystring');
 
 const PARSE_HTTP_OPTIONS = {
-    hostname: 'mm-parseserver.herokuapp.com',
+    hostname: 'mmparse-server.herokuapp.com',
     // hostname: 'localhost',
     port: 80,
-    path: '/parse/classes/Complaint',
+    //path: '/parse/classes/Complaint',
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
@@ -90,6 +90,8 @@ function postToParse(req, res, isGet) {
     if (isGet) {
         var temp = url.parse(req.url, true).query;
         params = getRequestParams(temp);
+	    if (params)
+            data = querystring.stringify(params);
     } else {
 		
         params = postRequestParams(req.body);
@@ -104,6 +106,16 @@ router.get('/', function (req, res, next) {
 router.get('/parse/save-complaint',
     function (req, res, next) {
         postToParse(req, res, true);
+    });
+
+router.get('/parse/cities',
+    function (req, res, next) {
+        if (isGet) {
+		var objectId;
+		PARSE_HTTP_OPTIONS.method = "GET";
+		var temp = url.parse(req.url, true).query;
+		params = return {objectId = temp.id};
+    	}
     });
 
 router.post('/parse/save-complaint', function (req, res, next) {
