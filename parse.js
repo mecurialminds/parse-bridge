@@ -114,7 +114,7 @@ router.get('/parse/cities',
 		var objectId;
 		PARSE_HTTP_OPTIONS.method = "GET";
 		var temp = url.parse(req.url, true).query;
-		params = return {objectId = temp.id};
+		params = {objectId : temp.id};
     	}
     });
 
