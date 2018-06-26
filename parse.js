@@ -5,9 +5,9 @@ var url = require('url');
 var querystring = require('querystring');
 
 const PARSE_HTTP_OPTIONS = {
-    hostname: 'mm-dashboard.herokuapp.com',
+    hostname: 'mmparse-server.herokuapp.com',
     // hostname: 'localhost',
-    port: 80,
+    //port: 80,
     path: '/parse/classes/Complaint',
     method: 'POST',
     headers: {
@@ -64,7 +64,7 @@ function postParseComplaints(params, res, isGet) {
     }
 
     var callback = function (response) {
-        var str = '';
+            var str = '';
         response.on('data', function (chunk) {
             str += chunk;
         });
@@ -106,7 +106,38 @@ router.get('/parse/save-complaint',
     function (req, res, next) {
         postToParse(req, res, true);
     });
+router.get('/parse/cities',
+    function (req, res, next) {
+        if (true) {
+            var objectId;
+            PARSE_HTTP_OPTIONS.method = "GET";
+            var temp = url.parse(req.url, true).query;
+            params = {objectId : temp.id};
+            if(temp.id != undefined || temp.id != null){
+                PARSE_HTTP_OPTIONS.path = '/parse/classes/Cities/'+params.objectId;
+            }else{
+                PARSE_HTTP_OPTIONS.path= '/parse/classes/Cities';
+            }
+            var callback = function (response) {
+                var str = '';
+                response.on('data', function (chunk) {
+                    str += chunk;
+                });
+                response.on('end', function () {
+                    console.log(str);
+                    res.json({status: true, data: JSON.parse(str)});
+                });
+            };
 
+            var req = http.request(PARSE_HTTP_OPTIONS, callback);
+            req.on('error', function (err) {
+                console.log('problem with request: ' + err.message);
+                res.json({status: false, message: err});
+            });
+
+            req.end();
+        }
+    });
 router.post('/parse/save-order', function (req, res, next) {
     postToParse(req, res, false);
 });

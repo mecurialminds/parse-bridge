@@ -35,7 +35,8 @@ app.use(function(err, req, res, next) {
 // endregion
 
 // region bin/www
-var port = normalizePort(process.env.PORT || '2210');
+//var port = normalizePort(process.env.PORT || '2210');
+var port = normalizePort('8969');
 app.set('port', port);
 
 var server = http.createServer(app);
